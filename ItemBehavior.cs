@@ -64,5 +64,19 @@ namespace csharp
                 product.Quality = 0;
             }
         }
+
+        public static void ConjuredItem(Item product)
+        {
+            product.SellIn -= 1;
+            if (product.Quality > 1)
+            {
+                product.Quality -= 2;
+            }
+
+            if (product.SellIn < 0 && product.Quality > 1)
+            {
+                product.Quality -= 2;
+            }
+        }
     }
 }
