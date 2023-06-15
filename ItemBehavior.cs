@@ -30,5 +30,14 @@ namespace csharp
 
 
         }
+
+        public static void AgedItem(Item product)
+        {
+            product.SellIn -= 1;
+            if (product.Quality < 50)
+            {
+                product.Quality += 1;
+            }
+        }
     }
 }
