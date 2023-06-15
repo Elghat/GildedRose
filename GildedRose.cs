@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace csharp
 {
@@ -15,7 +16,8 @@ namespace csharp
             this.Items = Items;
         }
 
-        public void UpdateQuality()
+        //Old UpdateQuality
+        /*public void UpdateQuality()
         {
             foreach (var product in Items)
             {
@@ -75,6 +77,27 @@ namespace csharp
                         }
                     }
                 }
+            }
+        }*/
+
+        public void UpdateQuality(Item itemToUpdate)
+        {
+            switch (itemToUpdate.Name)
+            {
+                case string itemType when itemType.Contains("Aged"):
+                    ItemBehavior.AgedItem(itemToUpdate);
+                    break;
+                case string itemType when itemType.Contains("Backstage passes"):
+                    ItemBehavior.BackstagePassesItem(itemToUpdate);
+                    break;
+                case string itemType when itemType.Contains("Sulfuras"):
+                    break;
+                case string itemType when itemType.Contains("Conjured"):
+                    ItemBehavior.ConjuredItem(itemToUpdate);
+                    break;
+                default:
+                    ItemBehavior.DefaultItem(itemToUpdate);
+                    break;
             }
         }
     }
