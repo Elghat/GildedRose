@@ -29,5 +29,23 @@ namespace csharp
             Assert.AreEqual(18, pasedDefaultProduct.Quality);
         }
 
+        [TestMethod]
+        public void AgedProductTest()
+        {
+            //Arrange
+            var agedProduct = new Item() { Name = "Aged Brie", SellIn = 2, Quality = 0 };
+            var pasedAgedProduct = new Item() { Name = "Aged Brie", SellIn = 0, Quality = 0 };
+
+            //Act
+            ItemBehavior.AgedItem(agedProduct);
+            ItemBehavior.AgedItem(pasedAgedProduct);
+
+            //Assert
+            Assert.AreEqual(1, agedProduct.SellIn);
+            Assert.AreEqual(1, agedProduct.Quality);
+
+            Assert.AreEqual(-1, pasedAgedProduct.SellIn);
+            Assert.AreEqual(1, pasedAgedProduct.Quality);
+        }
     }
 }
