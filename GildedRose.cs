@@ -4,6 +4,10 @@ namespace csharp
 {
     public class GildedRose
     {
+        /// <summary>
+        /// Todo : Implémenter la nouvelle UpdateQuality qui sera juste un dispatcher
+        /// UpdateQuality va appeler les méthodes de ItemBehavior selon l'item que je lui passe en paramètre
+        /// </summary>
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {
