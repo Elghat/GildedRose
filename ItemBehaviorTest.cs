@@ -47,5 +47,24 @@ namespace csharp
             Assert.AreEqual(-1, pasedAgedProduct.SellIn);
             Assert.AreEqual(1, pasedAgedProduct.Quality);
         }
+
+        [TestMethod]
+        public void BackstagePassesProductTest()
+        {
+            //Arrange
+            var backstagePassesProduct = new Item() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 20 };
+            var pasedBackstagePassesProduct = new Item() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 20 };
+
+            //Act
+            ItemBehavior.BackstagePassesItem(backstagePassesProduct);
+            ItemBehavior.BackstagePassesItem(pasedBackstagePassesProduct);
+
+            //Assert
+            Assert.AreEqual(4, backstagePassesProduct.SellIn);
+            Assert.AreEqual(23, backstagePassesProduct.Quality);
+
+            Assert.AreEqual(-1, pasedBackstagePassesProduct.SellIn);
+            Assert.AreEqual(0, pasedBackstagePassesProduct.Quality);
+        }
     }
 }
