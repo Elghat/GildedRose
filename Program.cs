@@ -5,6 +5,10 @@ namespace csharp
 {
     public class Program
     {
+        /// <summary>
+        /// TODO : Implémenter les nouvelles updateQuality quand elle sera faite
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             Console.WriteLine("OMGHAI!");
