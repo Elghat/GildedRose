@@ -66,5 +66,24 @@ namespace csharp
             Assert.AreEqual(-1, pasedBackstagePassesProduct.SellIn);
             Assert.AreEqual(0, pasedBackstagePassesProduct.Quality);
         }
+
+        [TestMethod]
+        public void ConjuredItemTest()
+        {
+            //Arrange
+            var conjuredItem = new Item() { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 };
+            var pasedConjuredItem = new Item() { Name = "Conjured Mana Cake", SellIn = 0, Quality = 6 };
+
+            //Act
+            ItemBehavior.ConjuredItem(conjuredItem);
+            ItemBehavior.ConjuredItem(pasedConjuredItem);
+
+            //Assert
+            Assert.AreEqual(2, conjuredItem.SellIn);
+            Assert.AreEqual(4, conjuredItem.Quality);
+
+            Assert.AreEqual(-1, pasedConjuredItem.SellIn);
+            Assert.AreEqual(2, pasedConjuredItem.Quality);
+        }
     }
 }
