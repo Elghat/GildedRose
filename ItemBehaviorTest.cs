@@ -72,7 +72,7 @@ namespace csharp
         {
             //Arrange
             var conjuredItem = new Item() { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 };
-            var pasedConjuredItem = new Item() { Name = "Conjured Mana Cake", SellIn = 0, Quality = 6 };
+            var pasedConjuredItem = new Item() { Name = "Conjured Mana Cake", SellIn = 0, Quality = 0 };
 
             //Act
             ItemBehavior.ConjuredItem(conjuredItem);
@@ -83,7 +83,7 @@ namespace csharp
             Assert.AreEqual(4, conjuredItem.Quality);
 
             Assert.AreEqual(-1, pasedConjuredItem.SellIn);
-            Assert.AreEqual(2, pasedConjuredItem.Quality);
+            Assert.AreEqual(0, pasedConjuredItem.Quality);
         }
     }
 }

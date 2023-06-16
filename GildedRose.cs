@@ -6,7 +6,6 @@ namespace csharp
     public class GildedRose
     {
         /// <summary>
-        /// Todo : Implémenter la nouvelle UpdateQuality qui sera juste un dispatcher
         /// UpdateQuality va appeler les méthodes de ItemBehavior selon l'item que je lui passe en paramètre
         /// Elle devrais détecter en fonction du début du string quel type d'objet c'est et appeler la méthode correspondante
         /// </summary>

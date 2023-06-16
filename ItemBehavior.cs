@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,22 +12,31 @@ namespace csharp
     {
         /// <summary>
         ///Ici je vais avoir tous les comportement des items différents que uniquement UpdateQuality appellera
-        ///Todo : Implémenter les exceptions avec test à chaque fois
         /// Pas besoin de faire un comportement pour sulfura puisque l'item ne bouge pas
         /// </summary>
+        
+        private const int MaxProductQuality = 50;
+        private const int MinProductQuality = 1;
+        private const int QualityModifier = 1;
+        private const int ConjuredQualityModifier = 2;
+        private const int SellInModifier = 1;
+        private const int ExpiredSellIn = 0;
+        private const int ConcertIsSoon = 11;
+        private const int ConcertIsVerySoon = 6;
+        private const int ConcertPassedQuality= 0;
 
         public static void DefaultItem(Item product)
         {
 
-            product.SellIn -= 1;
-            if (product.Quality > 1)
+            product.SellIn -= SellInModifier;
+            if (product.Quality > MinProductQuality)
             {
-                product.Quality -= 1;
+                product.Quality -= QualityModifier;
             }
 
-            if (product.SellIn < 0 && product.Quality > 1)
+            if (product.SellIn < ExpiredSellIn && product.Quality > MinProductQuality)
             {
-                product.Quality -= 1;
+                product.Quality -= QualityModifier;
             }
 
 
@@ -34,48 +44,48 @@ namespace csharp
 
         public static void AgedItem(Item product)
         {
-            product.SellIn -= 1;
-            if (product.Quality < 50)
+            product.SellIn -= SellInModifier;
+            if (product.Quality < MaxProductQuality)
             {
-                product.Quality += 1;
+                product.Quality += QualityModifier;
             }
         }
 
         public static void BackstagePassesItem(Item product)
         {
-            product.SellIn -= 1;
-            if (product.Quality < 50)
+            product.SellIn -= SellInModifier;
+            if (product.Quality < MaxProductQuality)
             {
-                product.Quality += 1;
+                product.Quality += QualityModifier;
             }
 
-            if (product.SellIn < 11 && product.Quality < 50)
+            if (product.SellIn < ConcertIsSoon && product.Quality < MaxProductQuality)
             {
-                product.Quality += 1;
+                product.Quality += QualityModifier;
             }
 
-            if (product.SellIn < 6 && product.Quality < 50)
+            if (product.SellIn < ConcertIsVerySoon && product.Quality < MaxProductQuality)
             {
-                product.Quality += 1;
+                product.Quality += QualityModifier;
             }
 
-            if (product.SellIn < 0)
+            if (product.SellIn < ExpiredSellIn)
             {
-                product.Quality = 0;
+                product.Quality = ConcertPassedQuality;
             }
         }
 
         public static void ConjuredItem(Item product)
         {
-            product.SellIn -= 1;
-            if (product.Quality > 1)
+            product.SellIn -= SellInModifier;
+            if (product.Quality > MinProductQuality)
             {
-                product.Quality -= 2;
+                product.Quality -= ConjuredQualityModifier;
             }
 
-            if (product.SellIn < 0 && product.Quality > 1)
+            if (product.SellIn < ExpiredSellIn && product.Quality > MinProductQuality)
             {
-                product.Quality -= 2;
+                product.Quality -= ConjuredQualityModifier;
             }
         }
     }
